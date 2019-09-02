@@ -20,5 +20,5 @@ This should take a couple of days max, all we need is a link to the Git (or equi
 #### Running the environment
 
 1. Fork this repository.
-
-2. Refer to the main readme for instructions on running the app.
+2. Add your commits, please don't squash them into the original repository commits, it makes it difficult to see your work.
+3. Refer to the main readme for instructions on running the app.
