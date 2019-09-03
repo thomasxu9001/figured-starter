@@ -13,14 +13,24 @@ a) cd to the working project directory and run
 b) once all docker images are downloaded and initialised 
 
     ./init-app.sh
+
+Wait for composer, yarn and Mongo setup to complete.
   
-The app should be available then at http://localhost:8080
+A basic laravel app should then be available at http://localhost:8080
 
 ## Running laravel commands
 
 Because we are running under an image called app we have to use docker-compose exec. For example:
 
-    docker-compose exec app php artisan key:generate
+    docker-compose exec app php artisan key:generate 
+
+## Running yarn
+
+    docker-compose exec app yarn
+
+## Running composer
+
+    docker-compose exec app composer install
     
 ## Running tests
 
