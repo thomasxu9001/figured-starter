@@ -20,3 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/posts', '\App\Http\Controllers\PostController@index');
+
+ // post detail page
+ Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
+
+
+

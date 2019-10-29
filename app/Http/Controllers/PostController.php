@@ -10,14 +10,13 @@ class PostController extends Controller
     // 列表
     public function index()
     {
-//        Post::create([
-//            'title'   =>'test',
-//            'content'  => 'test',
-//            'user_id' => 1
-//            ]);
-
-        dd(Post::all());
-        return;
+        return view("post/index");
     }
+
+    public function show(Post $post)
+    {
+        return view("post/postDetail", compact('post'));
+    }
+
 
 }
