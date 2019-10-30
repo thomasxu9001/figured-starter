@@ -21,6 +21,8 @@ Vue.use(require('vue-resource'));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('blog-post-card-component', require('./components/BlogPostCardComponent.vue').default);
+Vue.component('post-detail-component', require('./components/PostDetailComponent.vue').default);
+Vue.component('create-edit-post-component', require('./components/CreateEditPostComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to

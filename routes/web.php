@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -12,17 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('postList');
 });
 
 Auth::routes();
 
+Route::view('/posts', 'post/index')->name('postList');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/posts', '\App\Http\Controllers\PostController@index');
+Route::group(['middleware' => 'auth:web'], function(){
+    // Create post
+    Route::view('/posts/create', 'post/createPost');
+    Route::view('/posts/edit/{id}', 'post/editPost', ['id' => \Request::segment(3)]);
+});
 
- // post detail page
- Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
 
-
-
+// post detail page
+Route::view('/posts/{id}', 'post/postDetail', ['id' => \Request::segment(2)]);

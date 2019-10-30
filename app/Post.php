@@ -7,9 +7,9 @@ use DB;
 
 class Post extends Moloquent
 {
-    protected $connection = 'mongodb';  //库名
-    protected $collection = 'posts';     //文档名
+    protected $connection = 'mongodb';
+    protected $collection = 'posts';
     protected $dates = ['created_at', 'updated_at'];
-    protected $primaryKey = '_id';    //设置id
-    protected $fillable = ['title', 'content'];  //设置字段白名单
+    protected $primaryKey = '_id';
+    protected $fillable = ['title', 'content'];
 }

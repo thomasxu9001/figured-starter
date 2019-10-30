@@ -8,6 +8,9 @@ use \App\Post;
 
 class PostController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth', array('only' => array('store', 'update', 'destroy')));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +31,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = request(['title', 'content']);
+
+        $post = Post::create($params);
+        return response()->json($post);
     }
 
     /**
@@ -39,7 +45,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return response()->json($post);
     }
 
     /**
@@ -51,7 +59,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->title =  request('title');
+        $post->content =  request('content');
+        $post->save();
+        return response()->json($post);
     }
 
     /**
@@ -62,6 +75,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return response()->json('Success.');
     }
 }
