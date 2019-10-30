@@ -9,7 +9,7 @@ use \App\Post;
 class PostController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth', array('only' => array('store', 'update', 'destroy')));
+        $this->middleware('auth:api', array('only' => array('store', 'update', 'destroy')));
     }
     /**
      * Display a listing of the resource.

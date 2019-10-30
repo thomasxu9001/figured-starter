@@ -23,7 +23,8 @@
     export default {
         props: {
             id: String,
-            hasPermission: String
+            hasPermission: String,
+            token: String
         },
         mounted() {
             this.getPostDetail();
@@ -46,7 +47,8 @@
                 window.location.href = `/posts/edit/${this.id}`;
             },
             deletePost() {
-                this.$http.delete('/api/posts/'+ this.id)
+                let headers = this.getTokenHeader();
+                this.$http.delete('/api/posts/'+ this.id, {headers})
                     .then(response => {
                         return response.json();
                     }).then(() => {
@@ -55,6 +57,13 @@
             },
             goBack() {
                 window.location.href = `/posts/`;
+            },
+            getTokenHeader() {
+                let headers = {
+                    'Content-Type': 'application/json;charset=utf-8'
+                };
+                headers['Authorization'] = 'Bearer '+ this.token;
+                return headers;
             }
         }
     }

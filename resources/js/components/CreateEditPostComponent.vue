@@ -15,7 +15,8 @@
 <script>
     export default {
         props: {
-            id: String
+            id: String,
+            token: String
         },
         mounted() {
             if (this.id) {
@@ -43,10 +44,12 @@
                 });
             },
             editPost() {
+                let headers = this.getTokenHeader();
+
                 this.$http.put('/api/posts/' + this.id, {
                     title: this.title,
                     content: this.content
-                })
+                }, {headers})
                     .then(response => {
                         return response.json();
                     }).then(data => {
@@ -54,10 +57,11 @@
                 });
             },
             createPost() {
+               let headers = this.getTokenHeader();
                 this.$http.post('/api/posts/',{
                     title: this.title,
                     content: this.content
-                })
+                }, {headers})
                     .then(response => {
                         return response.json();
                     }).then(data => {
@@ -70,6 +74,13 @@
                 } else {
                     this.createPost();
                 }
+            },
+            getTokenHeader() {
+                let headers = {
+                    'Content-Type': 'application/json;charset=utf-8'
+                };
+                headers['Authorization'] = 'Bearer '+ this.token;
+                return headers;
             }
         }
     }
