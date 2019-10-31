@@ -5,6 +5,9 @@
             <p class="blog-post-meta">{{post.created_at}} </p>
             <p>{{post.content}}</p>
         </div>
+        <div v-if="posts.total === 0" class="card-title">
+            Please add some posts.
+        </div>
         <pagination :data="posts" @pagination-change-page="getPosts"></pagination>
     </div>
 </template>
