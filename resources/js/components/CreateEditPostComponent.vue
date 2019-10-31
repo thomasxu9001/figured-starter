@@ -6,8 +6,10 @@
         </div>
         <div class="form-group">
             <label>Content</label>
-            <textarea id="content" name="content" class="form-control" style="height:400px;max-height:500px;"  placeholder="Here is Content" v-model="content"></textarea>
+            <textarea id="content" name="content" class="form-control" style="height:400px;max-height:500px;"
+                      placeholder="Here is Content" v-model="content"></textarea>
         </div>
+        <error-component v-if="showError" :errors=errors></error-component>
         <button v-on:click="buttonClickHandler">{{buttonName}}</button>
     </div>
 </template>
@@ -30,12 +32,18 @@
             return {
                 title: this.title,
                 content: this.content,
-                buttonName: this.buttonName
+                buttonName: this.buttonName,
+                errors: this.errors ? this.errors : []
+            }
+        },
+        computed: {
+            showError: function () {
+                return this.errors.length > 0 ;
             }
         },
         methods: {
             getPostDetail() {
-                this.$http.get('/api/posts/'+ this.id)
+                this.$http.get('/api/posts/' + this.id)
                     .then(response => {
                         return response.json();
                     }).then(data => {
@@ -54,11 +62,13 @@
                         return response.json();
                     }).then(data => {
                     window.location.href = `/posts/${data._id}`;
+                }, errors => {
+                    this.errors = Object.values(errors.data.errors);
                 });
             },
             createPost() {
-               let headers = this.getTokenHeader();
-                this.$http.post('/api/posts/',{
+                let headers = this.getTokenHeader();
+                this.$http.post('/api/posts/', {
                     title: this.title,
                     content: this.content
                 }, {headers})
@@ -66,6 +76,8 @@
                         return response.json();
                     }).then(data => {
                     window.location.href = `/posts/${data._id}`;
+                }, errors => {
+                    this.errors = Object.values(errors.data.errors);
                 });
             },
             buttonClickHandler() {
@@ -79,7 +91,7 @@
                 let headers = {
                     'Content-Type': 'application/json;charset=utf-8'
                 };
-                headers['Authorization'] = 'Bearer '+ this.token;
+                headers['Authorization'] = 'Bearer ' + this.token;
                 return headers;
             }
         }

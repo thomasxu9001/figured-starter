@@ -8,7 +8,7 @@
             </div>
         @endif
         <div>
-            <blog-post-card-component></blog-post-card-component>
+            <blog-post-list-component></blog-post-list-component>
         </div>
     </div>
 @endsection
