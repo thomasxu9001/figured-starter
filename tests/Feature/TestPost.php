@@ -34,6 +34,12 @@ class TestPost extends TestCase
         );
     }
 
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        Post::truncate();
+    }
+
     /**
      * @return void
      */
