@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             <label>Content</label>
-            <textarea id="content" name="content" class="form-control" style="height:400px;max-height:500px;"
+            <textarea id="content" name="content" class="post-textarea"
                       placeholder="Here is Content" v-model="content"></textarea>
         </div>
         <error-component v-if="showError" :errors=errors></error-component>
@@ -38,7 +38,7 @@
         },
         computed: {
             showError: function () {
-                return this.errors.length > 0 ;
+                return this.errors.length > 0;
             }
         },
         methods: {
