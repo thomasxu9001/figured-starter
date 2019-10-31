@@ -2,13 +2,13 @@
     <div class="container blog-main">
         <div class="blog-post">
             <div>
-                <button v-on:click="goBack">Go to list</button>
+                <button class="bg-light back-button" v-on:click="goBack">Go to list</button>
             </div>
-            <div style="display:inline-flex">
+            <div>
                 <h2 class="blog-post-title">{{post.title}}</h2>
 
-                <button v-if="hasPermission" v-on:click="editPost">Edit</button>
-                <button v-if="hasPermission" v-on:click="deletePost">Delete</button>
+                <button class="bg-info action-button" v-if="hasPermission" v-on:click="editPost">Edit</button>
+                <button class="bg-danger action-button" v-if="hasPermission" v-on:click="deletePost">Delete</button>
 
             </div>
 

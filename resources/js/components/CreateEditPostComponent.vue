@@ -10,7 +10,7 @@
                       placeholder="Here is Content" v-model="content"></textarea>
         </div>
         <error-component v-if="showError" :errors=errors></error-component>
-        <button v-on:click="buttonClickHandler">{{buttonName}}</button>
+        <button class="bg-success" v-on:click="buttonClickHandler">{{buttonName}}</button>
     </div>
 </template>
 

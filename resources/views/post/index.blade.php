@@ -3,7 +3,7 @@
 @section("content")
     <div class="col-sm-8 blog-main">
         @if (Auth::check())
-            <div>
+            <div class="float-right">
                 <a href="/posts/create">New Post</a>
             </div>
         @endif
